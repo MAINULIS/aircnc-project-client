@@ -36,13 +36,18 @@ const SignUp = () => {
       console.log(imageData)
       const imageUrl = imageData.data.display_url;
 
+      // create User
       createUser(email, password)
       .then(result => {
         console.log(result.user);
+        // update user profile
         updateUserProfile(name, imageUrl)
         .then( () => {
           setLoading(false)
           navigate(from, { replace: true })
+        })
+        .catch(error => {
+          console.log(error);
         })
         toast.success("Your account successfully created")
       })
@@ -50,7 +55,6 @@ const SignUp = () => {
         toast.error(error.message)
       })
     })
-    console.log(name, email, password, url)
   }
 
   // google sign Up
