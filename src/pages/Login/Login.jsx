@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { saveUser } from "../../apis/auth";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -43,6 +44,7 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                saveUser(result.user);
                 setLoading(false)
                 navigate(from, {replace:true})
             })

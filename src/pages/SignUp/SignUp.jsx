@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { saveUser } from "../../apis/auth";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const SignUp = () => {
         updateUserProfile(name, imageUrl)
         .then( () => {
           setLoading(false)
+          saveUser(result.user);
           navigate(from, { replace: true })
         })
         .catch(error => {
@@ -64,6 +66,7 @@ const SignUp = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
         setLoading(false)
+        saveUser(result.user)
         navigate(from, { replace: true })
       })
       .catch(error => {
