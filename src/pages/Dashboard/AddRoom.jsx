@@ -22,7 +22,7 @@ const AddRoom = () => {
         const from = dates.startDate;
         const to = dates.endDate;
         const price = event.target.price.value;
-        const total_guest = event.target.total_guest.value;
+        const guests = event.target.total_guest.value;
         const bedrooms = event.target.bedrooms.value;
         const bathrooms = event.target.bathrooms.value;
         const description = event.target.description.value;
@@ -33,7 +33,7 @@ const AddRoom = () => {
             .then(data => {
                 const roomData = {
                     location,
-                    image: data.data.display_url, from, to, title, price, total_guest, bedrooms, bathrooms, description,
+                    image: data.data.display_url, from, to, title, price, guests, bedrooms, bathrooms, description,
                     host: {
                         name: user?.displayName,
                         image: user?.photoURL,
