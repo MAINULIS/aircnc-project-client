@@ -4,9 +4,12 @@ import { imageUpload } from "../../apis/imageUpload";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { addRoom } from "../../apis/rooms";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddRoom = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [dates, setDates] = useState({
         startDate: new Date(),
         endDate: new Date(),
@@ -28,6 +31,7 @@ const AddRoom = () => {
         const description = event.target.description.value;
         const category = event.target.category.value;
         const image = event.target.image.files[0];
+        setUploadButtonText('Uploading...')
         // upload image
         imageUpload(image)
             .then(data => {
@@ -45,7 +49,13 @@ const AddRoom = () => {
 
                 // post room data to server
                  addRoom(roomData)
-                 .then(data => console.log(data))
+                 .then(data => {console.log(data)
+                    setUploadButtonText('Uploaded')
+                    setLoading(false)
+                    toast.success('Your Room Added Successfully')
+                    event.target.reset();
+                    navigate('/dashboard/my-listings')
+                 })
                  .catch(err => console.log(err))
 
                 setLoading(false)
