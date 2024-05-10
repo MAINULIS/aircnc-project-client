@@ -8,6 +8,7 @@ const Button = ({ label, onClick, disabled, outline, small, icon: Icon }) => {
           disabled:opacity-70
           disabled:cursor-not-allowed
           rounded-lg
+          p-4
           hover:opacity-80
           transition
           w-full

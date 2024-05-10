@@ -6,10 +6,10 @@ const Main = () => {
     return (
         <div>
              <Navbar></Navbar>
-             <div className="pt-28 pb-20">
+             <div className="pt-24 min-h-[calc(100vh-60px)]">
              <Outlet></Outlet>
-             <Footer></Footer>
              </div>
+             <Footer></Footer>
         </div>
     );
 };

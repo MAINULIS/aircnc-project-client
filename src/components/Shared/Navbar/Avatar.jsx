@@ -7,6 +7,7 @@ const Avatar = () => {
     return (
         <div>
             <img className='rounded-full'
+             referrerPolicy='no-referer' //it will solve not img showing problem
                 src={user && user.photoURL ? user.photoURL : avatarIgm}
                 data-te-toggle="tooltip"
                 title={`Hi! I'm ${user?.displayName}`}
